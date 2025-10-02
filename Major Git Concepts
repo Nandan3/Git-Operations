@@ -1,0 +1,51 @@
+	§ Git Merge vs Git Rebase:
+	
+	○ Git Merge:
+		1. Combines two branches into one by creating a new commit (merge commit).
+		2. Preserves the original commit history as it is.
+		
+		Eg:
+		$git checkout main
+		$git merge feature      #This merges the feature branch into main.
+		
+		When to use:
+			i. Working in a large team where rewriting history may cause conflicts.
+			
+	○ Git Rebase:
+		1. Moves (re-applies) the commits of one branch on top of another branch.
+		2. Rewrites history 
+		
+		Eg:
+		$git checkout feature
+		$git rebase main        #This takes all commits from feature and puts them on top of the latest main.
+		
+	§ Git cherry-pick:
+		1. Used to apply a specific commit from one branch into another branch, without merging the entire branch.
+		2. $git cherry-pick <commit-hash>
+		Eg:
+		$git checkout main
+		$git cherry-pick a1b2c3d
+		
+	§ Git stash:
+		1. It stores your uncommitted changes (both staged & unstaged) in a temporary stack.
+		2. Cleans your working directory so you can switch branches or pull updates safely.
+		3. You can later apply or pop the stashed changes back.
+		Eg: $git stash         #Saves modified & staged changes.
+			$git stash save "message"        #Adds a description for easier identification.
+			$git stash list        #list all stashes
+			$git stash apply stash@{0}   #Applies the changes back but stash remains saved.
+			$git stash pop          #Applies the latest stash and removes it from stash list.
+			
+	§ Git reflog:
+		1. Reflog = “Reference Log”.
+		2. Git records every movement of HEAD (branch pointers), even if commits are “lost” from normal history.
+		3. Shows us all the actions that have been taken on our repo
+		4. Used to revert or reset
+		Eg: $git reflog
+		o/p: 
+		b1c2d3e HEAD@{0}: reset: moving to B
+		d4e5f6g HEAD@{1}: commit: Added feature
+		c7d8e9f HEAD@{2}: commit: Fixed bug
+		a1b2c3d HEAD@{3}: checkout: moving from main to feature
+	
+	
