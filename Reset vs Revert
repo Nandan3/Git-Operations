@@ -1,0 +1,23 @@
+§ Git Reset vs Git Revert:
+
+○ Git Reset:
+	1. To undo the commits and keep those changes in the history.
+	2. Git reset moves the branch pointer (HEAD) to a different commit.
+	
+	Eg:
+	$git reset --soft HEAD~1          #undo last commit, keep changes staged
+	
+	$git reset --hard HEAD~1         #undo last commit and delete changes
+	
+○ Git Revert:
+	1. Creates a new commit that undoes the changes of a previous commit.
+	
+	Eg:
+	$git revert a1b2c3d
+	#This creates a new commit that reverses the changes made by commit a1b2c3d.
+	
+	ü Common Scenarios:
+		1. Accidentally committed too early → use git reset --soft HEAD~1.
+		2. Want to discard uncommitted changes → use git reset --hard.
+		3. Need to undo a bad commit that’s already pushed → use git revert <commit>.
+		4. Fix broken production release → use git revert (safer).
