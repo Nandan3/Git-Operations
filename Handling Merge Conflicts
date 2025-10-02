@@ -1,0 +1,57 @@
+§ Merge conflict:
+	1. A merge conflict happens when Git cannot automatically merge two commits because the same part of the same file was changed differently in two branches.
+	
+§ When Do Conflicts Occur?
+	1. Running git merge
+	2. Running git pull (which internally does a merge/rebase)
+	3. Running git rebase
+	4. Running git cherry-pick
+	
+Eg:
+	a. Suppose two developers edit the same line in app.py:
+		ü Branch A (main):   print("Hello World")
+		ü Branch B (feature):   print("Hello Universe")
+		ü If you try to merge, Git will stop and mark conflict like this:
+		
+		<<<<<<< HEAD
+		print("Hello World")
+		=======
+		print("Hello Universe")
+		>>>>>>> feature
+		
+§ Ways to Handle Merge Conflicts:
+	1. Option 1: Manual Resolution
+	Open the file with conflict.
+	Edit between <<<<<<<, =======, and >>>>>>>.
+	Example, decide:
+print("Hello Universe")
+	Mark conflict as resolved:
+$git add app.py
+$git commit   # or git merge --continue if rebasing
+	
+	2. Option 2: Use git checkout --ours or --theirs
+	Keep your version (current branch):
+git checkout --ours app.py
+	Keep their version (other branch):
+git checkout --theirs app.py
+	Then:
+	$git add app.py
+$git commit
+	
+	3. Option 3: Use a Merge Tool
+	Git supports merge tools (like VS Code, Meld, KDiff3, Beyond Compare):
+	$git mergetool
+	This opens a visual tool to resolve conflicts interactively.
+	
+	4. Option 4: Abort the Merge/Rebase
+	If things look messy:
+	
+	$git merge --abort   # cancel a merge
+$git rebase --abort  # cancel a rebase
+	
+§ Best Practices to Minimize Merge Conflicts
+	1. Pull/rebase often to stay up-to-date with main.
+	2. Keep feature branches short-lived.
+	3. Break large features into smaller commits/branches.
+	4. Communicate with teammates if working on the same files.
+	5. Use git rebase main before merging to reduce conflict chance.
