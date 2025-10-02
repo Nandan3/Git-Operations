@@ -1,0 +1,46 @@
+	§ Why Source Code Management is needed?
+		1. Version Control 
+		2. Collaboration 
+		3. Backup & Recovery 
+		4. Branching & Merging 
+		5. Audit & History
+	
+	§ Install git in Linux:
+	$sudo yum install git -y
+	
+	§ Connecting to remote Git Repo:
+		1. $git remote add origin <remote_url>    #connect to remote repo
+		Eg:
+		$git remote add origin https://github.com/Nandan3/Master-Linux-using-Commands-and-Scripts.git    #HTTPS
+		Or
+		$git remote add origin git@github.com:Nandan3/Master-Linux-using-Commands-and-Scripts.git        #SSH
+		Remote URL: Github website >> Repositories >> select ssh >> copy the string
+		
+	§ Git Clone:
+		1. $git clone https://github.com/Nandan3/Master-Linux-using-Commands-and-Scripts.git  #This will create a local folder with .git connected to origin.
+		Or
+		$git clone git@github.com:Nandan3/Master-Linux-using-Commands-and-Scripts.git  (ssh)
+		
+	§ Git Branching:
+		1. $git branch feature1    #to create new branch
+		2. $git checkout -b feature1   #Create and switch in one step
+		Or  $git switch -c feature1
+		3. $git checkout feature1     #Switch to a branch
+		Or  $git switch feature1
+		4. $git branch       #to list the branches
+		5. $git branch -d feature1      # safe delete (only if merged)
+		Or $git branch -D feature1      # force delete
+		
+	§ Git staging & committing changes:
+		1. $git add Essential-linux-commands.txt   #to add files into a staging area, means ready to commit
+		
+		$git add .    Or    $git add "*.html"   or $git add products/  # to add subdirectories into staging area
+		2. $git commit -m "commit message"
+		
+	§ Pushing & Pulling Local Code to Remote:
+		1. $git push --set-upstream origin main      #If you already have commits
+		2. $git pull origin main        #used to fetch and merge changes from a remote repository into your current branch.
+			ü Before pushing your own code (git push), you often run git pull to make sure your branch is up-to-date with the remote.
+		3. Rebase instead of merge (cleaner history):
+		$git pull --rebase origin main
+		This applies your local commits on top of the remote branch commits.
